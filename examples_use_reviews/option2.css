@@ -1,0 +1,74 @@
+
+.stars-outer, 
+.ts-stars-outer 
+{
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+  font-size: 20px;
+}
+.stars-outer::before 
+{
+  content: "\2605 \2605 \2605 \2605 \2605";
+  font-size: 20px;
+}
+.ts-stars-outer::before 
+{
+  content: "\2605 \2605 \2605 \2605 \2605";
+  font-size: 20px;
+}
+span.ts-stars-outer 
+{
+    float: left;
+}
+.stars-inner, 
+.ts-stars-inner
+ {
+  position: absolute;
+  top: 0;  
+  left: 0;
+  white-space:  nowrap;
+  overflow: hidden;
+  width: 0;
+}
+.stars-inner::before 
+{
+  content: "\2605 \2605 \2605 \2605 \2605";
+  color: #f8ce0b;
+}
+.ts-stars-inner::before 
+{
+  content: "\2605 \2605 \2605 \2605 \2605";
+  color: #f8ce0b;
+}
+div#trustedStars_Output 
+div 
+{
+    width: fit-content;
+    margin: auto;  
+    float: left;
+}
+div#tsNote 
+{
+    padding-top: 0.5%;
+}
+div#noteDescription 
+{
+    padding-left: 6px;
+    padding-right: 6px;
+    font-weight: bolder;
+}
+div#trustedStars_Output 
+{
+    margin: 0 auto;
+}
+#badge_footer 
+{
+    display: block;
+    background: url() no-repeat left center;
+    padding-left: 75px;
+    margin: 15px 0   20px;
+    min-height: 59px;
+    text-align: center;
+    width: 81px;
+}
