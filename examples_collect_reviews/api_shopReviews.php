@@ -11,9 +11,9 @@ function getTrustedShopsConfig()
 // */
 
 // otherwise store local config somewhere else
-if( is_file( __DIR__ . '/../trustedshops_local.php' ) )
+if( is_file( __DIR__ . '/../../trustedshops_local.php' ) )
 {
-    require_once __DIR__ . '/../trustedshops_local.php';
+    require_once __DIR__ . '/../../trustedshops_local.php';
 }
 
 $config = getTrustedShopsConfig();
