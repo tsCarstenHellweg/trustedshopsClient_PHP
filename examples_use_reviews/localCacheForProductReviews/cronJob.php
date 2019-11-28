@@ -51,7 +51,7 @@ do
         
         $reviewProduct      = (array) $review->product; // [sku], [name], [imageUrl], [uuid], [url]        
         $reviewOrder        = (array) $review->order;   // [orderDate], [orderReference], [uid] .... review[ 'uid' ] is the same as review[ 'uuid' ]
-        $reviewReviewer     = (array) $review-reviewer; // [uuid], [email]
+        $reviewReviewer     = (array) $review->reviewer; // [uuid], [email]
     }        
     $page++;
 }
