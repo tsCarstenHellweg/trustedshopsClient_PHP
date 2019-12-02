@@ -18,6 +18,8 @@ function getTrustedShopsConfig()
 
 $size = 100;
 $page = 0;
+
+$allcount = 0;
 do
 {        
     $config = getTrustedShopsConfig();
@@ -39,11 +41,13 @@ do
 
     $resultJSON = json_decode( $response );
 
+//    echo '<pre>', print_r( $resultJSON, 1 ), '</pre>';
+    
     $reviews = $resultJSON->response->data->shop->productReviews;    
     foreach( $reviews as $review )
     {        
         // show all the review-data
-        // echo '<h1>review</h1><pre>', print_r( $review, 1 ), '</pre>';
+//          echo '<h1>review</h1><pre>', print_r( $review, 1 ), '</pre>';
 
         $reviewCreationDate = '' . $review->creationDate;
         $reviewComment      = '' . $review->comment;
@@ -52,7 +56,10 @@ do
         $reviewProduct      = (array) $review->product; // [sku], [name], [imageUrl], [uuid], [url]        
         $reviewOrder        = (array) $review->order;   // [orderDate], [orderReference], [uid] .... review[ 'uid' ] is the same as review[ 'uuid' ]
         $reviewReviewer     = (array) $review->reviewer; // [uuid], [email]
+        echo $reviewOrder[ 'orderDate' ], '<br />';
+        $allcount++;
     }        
     $page++;
+    $count = '' . $resultJSON->response->responseInfo->count;
 }
-while( $metaInfo->count == $size );
+while( $count == $size );
