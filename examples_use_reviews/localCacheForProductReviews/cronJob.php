@@ -16,16 +16,16 @@ function getTrustedShopsConfig()
 }
 // */
 
-$size = 100;
+$size = 10;
 $page = 0;
 
-$allcount = 0;
+$allcount = array();
 do
 {        
     $config = getTrustedShopsConfig();
     $loginData = base64_encode( $config[ 'username' ] . ':' . $config[ 'password' ] );
 
-    $url = 'https://api.trustedshops.com/rest/restricted/v2/shops/' . $config[ 'tsID' ] . '/products/reviews.json?size=' . $size . '&page='.$page;
+    $url = 'https://api.trustedshops.com/rest/restricted/v2/shops/' . $config[ 'tsID' ] . '/products/reviews.json'; // ?size=' . $size . '&page='.$page;
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_URL            => $url,
@@ -41,14 +41,16 @@ do
 
     $resultJSON = json_decode( $response );
 
-//    echo '<pre>', print_r( $resultJSON, 1 ), '</pre>';
+    echo '<h1>result</h1><pre>', print_r( $resultJSON, 1 ), '</pre>';
     
     $reviews = $resultJSON->response->data->shop->productReviews;    
     foreach( $reviews as $review )
     {        
         // show all the review-data
-//          echo '<h1>review</h1><pre>', print_r( $review, 1 ), '</pre>';
+        echo '<h1>review</h1><pre>', print_r( $review, 1 ), '</pre>';
 
+         
+        // here are the fields, that you can access via the call.
         $reviewCreationDate = '' . $review->creationDate;
         $reviewComment      = '' . $review->comment;
         $reviewUID          = '' . $review->UID;
@@ -56,8 +58,6 @@ do
         $reviewProduct      = (array) $review->product; // [sku], [name], [imageUrl], [uuid], [url]        
         $reviewOrder        = (array) $review->order;   // [orderDate], [orderReference], [uid] .... review[ 'uid' ] is the same as review[ 'uuid' ]
         $reviewReviewer     = (array) $review->reviewer; // [uuid], [email]
-        echo $reviewOrder[ 'orderDate' ], '<br />';
-        $allcount++;
     }        
     $page++;
     $count = '' . $resultJSON->response->responseInfo->count;
